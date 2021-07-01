@@ -1,5 +1,6 @@
-type MyPick<T, K extends T> = { [P in K]: T[P] }
-
+type MyPick<T, K extends keyof T> = { [P in K]: T[P] }
+// [P in K] means the key of MyPick is in K, K might have several keys
+// T[P] turned out is a type, use P as key in T, and the value is type here, that type become the type that MyPick need, and pair with key
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from '@type-challenges/utils'
@@ -39,25 +40,23 @@ function useInOperator(params: Expected1 | Expected2) {
 }
 
 function useExtendKeyword(params: Expected1 | Expected2) {
-    interface exFromTodo extends Todo {
+    interface exf extends Todo {
 
     }
 
-    let foo: exFromTodo;
-    let bar: exFromTodo;
+    let foo: exf;
+    let bar: exf;
     console.log(foo.completed);
     // keyof operator
-    type P = keyof exFromTodo;
+    type P = keyof exf;
     // keyValuePair type
-    // type keyValuePair = { [key: string]: number };
-    interface NumberKey {
-        12: string
-    }
-    type keys = 'string';
+    type keya = keyof exf;
+    type keys = & keyof exf;
+    // It looks like they are the same thing, but why I can not use the first one in generic
     type keyValuePair = {
-        [K in keys]: exFromTodo
+        [K in keya]: exf[K]
     }
-    let kv: keyValuePair = { 'string': foo, 'strings': bar }
+    let kv: keyValuePair = { title: 'foo', completed: false, description: 'bar' }
 
 
 }
