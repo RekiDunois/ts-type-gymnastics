@@ -1,5 +1,7 @@
-type MyReadonly<T> = any
-
+type MyReadonly<T> = {
+    readonly [K in keyof T]: T[K]
+}
+// you can not use K in T directly, you need to use keyof to le K know what it is in
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from '@type-challenges/utils'
