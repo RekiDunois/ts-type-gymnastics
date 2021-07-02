@@ -1,5 +1,5 @@
-type Length<T extends any> = any
-
+type Length<T extends readonly any[]> = T['length']
+// clearly all the type in js/ts can index by string
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from '@type-challenges/utils'
