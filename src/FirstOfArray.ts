@@ -18,4 +18,4 @@ foo[3];
 
 type bar = typeof foo
 
-type rio = [];
+type rio = 3;

@@ -13,5 +13,5 @@ type cases = [
     Expect<Equal<Awaited<Y>, { field: number }>>,
 ]
 
-// @ts-expect-error
+// ts-expect-error
 type error = Awaited<Promise<number>>
